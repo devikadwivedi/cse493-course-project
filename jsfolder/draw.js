@@ -1,9 +1,4 @@
-function drawGame(boxes, plants, bullets, zombies, suns, selectedPlant) {
-  switch (gameState) {
-    case 0:
-      drawTitleScreen();
-      break;
-    case 1:
+function drawGame() {
       noStroke();
       background(160, 210, 140);
       drawMenu(selectedPlant);
@@ -11,10 +6,11 @@ function drawGame(boxes, plants, bullets, zombies, suns, selectedPlant) {
       drawPlants(plants);
       drawBullets(bullets);
       drawZombies(zombies);
-      drawSpawnLine();
       moveSuns(suns);
       drawSuns(suns);
       checkZombieCollisions(plants, zombies, bullets);
+
+      // generating the flakes
       for(let i = 0; i < flakes.length; i++) {
         flakes[i].pos.add(flakes[i].vel);
         flakes[i].size--;
@@ -28,9 +24,4 @@ function drawGame(boxes, plants, bullets, zombies, suns, selectedPlant) {
       }
       strokeWeight(0);
       noStroke();
-      break;
-    default:
-      drawGameOverScreen();
-      break;
-  }
 }

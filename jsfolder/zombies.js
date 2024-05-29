@@ -28,3 +28,36 @@ function spawnZombie() {
   let zombieX = lane * boxWidth + boxWidth / 2;
   zombies.push({ x: zombieX, y: 0, lane: lane, transparency: 255 });
 }
+
+// Checks for zombie collisions
+function checkZombieCollisions(plants, zombies, bullets) {
+  for (let plant of plants) {
+    if (plant.special == "mine") {
+      for (let zombie of zombies) {
+        if (dist(plant.x, plant.y, zombie.x, zombie.y) < 50) {
+          genFlakes(plant.x, plant.y);
+          let plantIndex = plants.indexOf(plant);
+          if (plantIndex > -1) {
+            plants.splice(plantIndex, 1);
+          }
+
+          let boxX = Math.floor(plant.x / boxWidth);
+          let boxY = Math.floor(plant.y / boxHeight);
+          if (boxX >= 0 && boxX < cols && boxY >= 0 && boxY < rows) {
+            boxes[boxX][boxY].containsPlant = false;
+            boxes[boxX][boxY].plant = null;
+          }
+
+          for (let i = zombies.length - 1; i >= 0; i--) {
+            let z = zombies[i];
+            let boxDistanceX = Math.abs((plant.x - z.x) / boxWidth);
+            let boxDistanceY = Math.abs((plant.y - z.y) / boxHeight);
+            if (boxDistanceX <= 2 && boxDistanceY <= 2) {
+              zombies.splice(i, 1);
+            }
+          }
+        }
+      }
+    }
+  }
+}

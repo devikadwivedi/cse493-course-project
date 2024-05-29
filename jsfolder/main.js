@@ -5,7 +5,7 @@ let zombies = [];
 let suns = [];
 let selectedPlant = null;
 let flakes = []
-
+let gameState = 1;
 
 let plantTypes = {
   'a': { name: "Plant 5", color: 'yellow', interval: 7000, cost: 50, special: "sun-producer" },
@@ -39,8 +39,19 @@ function setup() {
 }
 
 function draw() {
-  drawGame(boxes, plants, bullets, zombies, suns, selectedPlant);
+  switch (gameState) {
+    case 0:
+      drawTitleScreen();
+      break;
+    case 1:
+      drawGame();
+      break;
+    default:
+      drawGameOverScreen();
+      break;
+  }
 }
+
 
 // Key pressed handler
 function keyPressed() {
