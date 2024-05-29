@@ -24,7 +24,6 @@ function drawZombies() {
 
 function spawnZombie() {
   let lane = Math.floor(random(cols));
-  lane = Math.floor((random(0,1) / width) * cols) + 1;
   lane = constrain(lane, 0, 4);
   let zombieX = lane * boxWidth + boxWidth / 2;
   zombies.push({ x: zombieX, y: 0, lane: lane, transparency: 255 });
