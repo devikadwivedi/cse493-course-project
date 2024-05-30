@@ -21,7 +21,7 @@ function setup() {
   createCanvas(500, 600);
   noseTrackingSetup(); //Set up nose tracking
   setInterval(spawnSun, 10000); // Spawn a sun every second
-  
+
   // Initialize boxes
   for (let i = 0; i < cols; i++) {
     boxes[i] = [];
@@ -45,7 +45,7 @@ function draw() {
   //if(!poseNetModelReady){return;}//Wait until camera is ready
   switch (gameState){
     case 0: drawTitleScreen(); break;
-    case 1:   
+    case 1:
       noStroke();
       background(160, 210, 140);
       drawMenu();
@@ -116,7 +116,7 @@ function drawMenu() {
     fill(128,85,0);
     stroke(0);
     rect(boxX, boxY, 75, menuHeight);
-    
+
 
     noStroke();
     // Draw plant circle
@@ -314,7 +314,7 @@ function genFlakes(x, y) {
       size: random(30)
     });
   }
-  
+
 }
 
 function collectSun(x, y) {
