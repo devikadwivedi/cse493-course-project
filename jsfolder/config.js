@@ -1,6 +1,7 @@
 //For nosetracking.js
 let invertNose = true;
 
+let totalTime = 3 * 60 * 1000;
 let gameState = 1; // 0 is menu, 1 is in game, 2 is plant win, 3 is zombie win
 
 //Transplanted from sketch.js

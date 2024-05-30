@@ -8,6 +8,7 @@ function drawGame() {
       drawZombies(zombies);
       moveSuns(suns);
       drawSuns(suns);
+      updateTimer();
 
       checkZombieCollisions(plants, zombies, bullets);
 

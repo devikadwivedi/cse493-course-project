@@ -35,6 +35,7 @@ function setup() {
     }
   }
   setInterval(spawnZombie, zombieInterval);
+  startTimer();
 }
 
 function draw() {
