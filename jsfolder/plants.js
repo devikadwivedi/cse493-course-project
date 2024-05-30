@@ -2,6 +2,7 @@ function drawPlants() {
   for (let plant of plants) {
     fill(plant.color);
     ellipse(plant.x, plant.y, 50, 50);
+
   }
 }
 

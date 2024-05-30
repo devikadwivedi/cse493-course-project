@@ -5,7 +5,7 @@ function drawZombies() {
     zombie.y += 0.5;
 
     if (zombie.y > height - menuHeight) {
-      noLoop();
+      gameState = 2; // GAME OVER!
     }
   }
 
@@ -59,5 +59,6 @@ function checkZombieCollisions(plants, zombies, bullets) {
         }
       }
     }
+    // else add component where the plant dissapears on collision
   }
 }

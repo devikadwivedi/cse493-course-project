@@ -8,6 +8,7 @@ function drawGame() {
       drawZombies(zombies);
       moveSuns(suns);
       drawSuns(suns);
+
       checkZombieCollisions(plants, zombies, bullets);
 
       // generating the flakes

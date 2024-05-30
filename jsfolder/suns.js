@@ -1,8 +1,14 @@
 function spawnSun() {
   let x = width + 20;
-  let y = random(500);
+  let y = random(400);
   let radius = 15;
   let sun = new Sun(x, y, radius);
+  suns.push(sun);
+}
+
+function spawnSunFlower(x, y) {
+  let radius = 15;
+  let sun = new Sun(x, y - 5, radius);
   suns.push(sun);
 }
 

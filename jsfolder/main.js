@@ -3,25 +3,24 @@ let plants = [];
 let bullets = [];
 let zombies = [];
 let suns = [];
-let selectedPlant = null;
-let flakes = []
-let gameState = 1;
+let flakes = [];
 
-let plantTypes = {
-  'a': { name: "Plant 5", color: 'yellow', interval: 7000, cost: 50, special: "sun-producer" },
-  's': { name: "Plant 1", color: 'rgb(81,179,81)', interval: 1000, cost: 100, special: "none"},
-  'd': { name: "Plant 3", color: 'rgb(204,115,130)', interval: 660, cost: 200, special: "none"},
-  'f': { name: "Plant 2", color: 'rgb(137,89,70)', cost: 200, special: "mine"},
-  'g': { name: "Plant 4", color: 'rgb(148,139,207)', interval: 1000, cost: 200, special: "forward-backward" }
-};
+let plantTypes = [
+  { key: 's', name: "Plant 1", color: 'rgb(81,179,81)', interval: 1000, cost: 100, special: "none" },
+  { key: 'd', name: "Plant 3", color: 'rgb(204,115,130)', interval: 660, cost: 200, special: "none" },
+  { key: 'f', name: "Plant 2", color: 'rgb(137,89,70)', cost: 200, special: "mine" },
+  { key: 'g', name: "Plant 4", color: 'rgb(148,139,207)', interval: 1000, cost: 200, special: "forward-backward" }
+];
+let selectedPlant = plantTypes[0];
 
 let zombieInterval = 10000;
+let selectedIndex = 0; // Track the current selected plant index
 
 function setup() {
   createCanvas(500, 600);
-  //noseTrackingSetup();
   setInterval(spawnSun, 10000);
- // Initialize boxes
+
+  // Initialize boxes
   for (let i = 0; i < cols; i++) {
     boxes[i] = [];
     for (let j = 0; j < rows; j++) {
@@ -46,18 +45,21 @@ function draw() {
     case 1:
       drawGame();
       break;
-    default:
+    case 2:
       drawGameOverScreen();
       break;
   }
 }
 
-
 // Key pressed handler
 function keyPressed() {
-  if (plantTypes[key]) {
-    selectedPlant = plantTypes[key];
+  if (key === 'a') {
+    selectedIndex = (selectedIndex - 1 + plantTypes.length) % plantTypes.length; // Move left
+  } else if (key === 's') {
+    selectedIndex = (selectedIndex + 1) % plantTypes.length; // Move right
   }
+  selectedPlant = plantTypes[selectedIndex];
+  console.log('Selected Plant:', selectedPlant);
 }
 
 // Mouse pressed handler
@@ -80,6 +82,10 @@ function mousePressed() {
             sun -= selectedPlant.cost; // Deduct the sun cost
             if (selectedPlant.interval > 0) {
               setInterval(() => shootBulletsFromPlant(i), selectedPlant.interval);
+            }
+            if (selectedPlant.special == "sun-producer") {
+              console.log("setting interval");
+              setInterval(spawnSunFlower(plantX, plantY), 1000);
             }
           }
         }

@@ -34,13 +34,19 @@ function drawMenu(selectedPlant) {
   }
 
   let offset = 125;
-  for (let key in plantTypes) {
-    strokeWeight(3);
-    let plant = plantTypes[key];
+  for (let i = 0; i < plantTypes.length; i++) {
+    let plant = plantTypes[i];
     let boxX = offset;
     let boxY = height - menuHeight;
-    fill(128, 85, 0);
+
+    if (plant === selectedPlant) {
+      fill(100, 60, 0); // Different color for the selected plant box
+    } else {
+      fill(128, 85, 0); // Normal color for the plant box
+    }
+
     stroke(0);
+    strokeWeight(1);
     rect(boxX, boxY, 75, menuHeight);
     noStroke();
     fill(plant.color);
@@ -52,6 +58,8 @@ function drawMenu(selectedPlant) {
     offset += 75;
   }
 }
+
+
 
 // Draws the field
 function drawField(boxes) {
