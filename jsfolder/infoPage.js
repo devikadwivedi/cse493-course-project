@@ -1,51 +1,4 @@
-let tileSize = 100;
-let tileSpacing = 25;
-let numCols = 4;
-let numNativeRows = 1;
-let numInvasiveRows = 2;
-
-let nativePlantImages = [];
-let invasivePlantImages = [];
-let invasiveImages = []; // To store all images for easy management
-let nativeImages = [];
-
-let invasiveInfo = [
-  { type: "invasive", name: "Reed Canary Grass", image: "plantImages/invasive1.jpeg", description: "invasive plant 1 description"},
-  { type: "invasive", name: "Scotch Broom", image: "plantImages/invasive2.jpeg", description: "invasive plant 2 description"},
-  { type: "invasive", name: "English Ivy", image: "plantImages/invasive3.jpeg", description: "invasive plant 3 description"},
-  { type: "invasive", name: "Tansy Ragwort", image: "plantImages/invasive4.jpeg", description: "invasive plant 4 description" },
-  { type: "invasive", name: "Himalayan Blackberry", image: "plantImages/invasive5.jpg", description: "invasive plant 5 description" },
-  { type: "invasive", name: "Bull Thistle", image: "plantImages/invasive6.jpg", description: "invasive plant 6 description" },
-  { type: "invasive", name: "Fragrant Waterlilly", image: "plantImages/invasive7.jpg", description: "invasive plant 7 description" },
-  { type: "invasive", name: "Scentless Mayweed", image: "plantImages/invasive8.jpg", description: "invasive plant 8 description" },
-];
-
-let nativeInfo = [
-  { type: "native", name: "Alpine Strawberry", image: "plantImages/native1.jpg", description: "native plant 1 description"},
-  { type: "native", name: "Camassia", image: "plantImages/native2.jpg", description: "native plant 2 description"},
-  { type: "native", name: "Red Cedar", image: "plantImages/native3.jpeg", description: "native plant 3 description"},
-  { type: "native", name: "Pacific Dogwood", image: "plantImages/native4.jpg", description: "native plant 4 description"},
-];
-
-let currentPlant = null; // To store the currently selected plant info
-let showInfoPage = false;
-
-function preload() {
-  for (let plant of invasiveInfo) {
-    plant.img = loadImage(`${plant.image}`);
-    invasiveImages.push(plant.img);
-  }
-  for (let plant of nativeInfo) {
-    plant.img = loadImage(`${plant.image}`);
-    nativeImages.push(plant.img);
-  }
-}
-
-function setup() {
-  createCanvas(500, 600);
-}
-
-function draw() {
+function drawInfoScreen() {
   background(220);
   if (showInfoPage) {
     drawInfoCard();
@@ -90,15 +43,24 @@ function drawTiles() {
       }
     }
   }
+  fill(111, 76, 46);
+  rect(400, 550, 50, 25);
+  fill(255);
+  textSize(18);
+  textAlign(CENTER, CENTER);
+  text("Back", 425, 565);
 }
 
-function mousePressed() {
+function mousePressedInfoPage() {
   if (showInfoPage) {
     // Check if the "Back to Menu" button is clicked
     if (mouseX > 375 && mouseX < 425 && mouseY > 500 && mouseY < 550) {
       showInfoPage = false;
     }
   } else {
+    if (mouseX > 400 && mouseX < 450 && mouseY > 550 && mouseY < 600) {
+      gameState = 0;
+    }
     let yOffset = 100;
     for (let i = 0; i < numNativeRows; i++) {
       for (let j = 0; j < numCols; j++) {
@@ -130,6 +92,7 @@ function mousePressed() {
 }
 
 function drawInfoCard() {
+  background(111, 76, 46);
   fill(255);
   rect(50, 50, 400, 500);
 
@@ -148,7 +111,7 @@ function drawInfoCard() {
     textSize(16);
     text(currentPlant.description, 100, 430, 300, 50); // Text box for description
 
-    fill(200, 0, 0);
+    fill(111, 76, 46);
     rect(375, 500, 50, 25);
     fill(255);
     textSize(18);
