@@ -28,4 +28,5 @@ function drawGame() {
       }
       strokeWeight(0);
       noStroke();
+      // serialWriteState(1);
 }

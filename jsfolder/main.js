@@ -11,8 +11,6 @@ let titleScreenImage;
 let woods = [];
 
 
-
-
 let plantTypes = [
   { key: 's', name: "plant1.png", color: 'rgb(81,179,81)', interval: 1000, cost: 100, special: "none" },
   { key: 'd', name: "plant2.png", color: 'rgb(204,115,130)', interval: 660, cost: 200, special: "none" },
@@ -26,7 +24,7 @@ let selectedIndex = 0; // Track the current selected plant index
 
 
 function preload() {
-  titleScreenImage = loadImage(game_start.png);
+  titleScreenImage = loadImage(`game_start.png`);
   // Load the sprites
   for (let i = 1; i <= 4; i++) {
     sprites.push(loadImage(`sprite${i}.png`));
@@ -63,6 +61,7 @@ function setup() {
   }
   setInterval(spawnZombie, zombieInterval);
   handPoseSetup();
+  serialSetup(); //Set up serial communication
 }
 
 function draw() {
@@ -72,12 +71,11 @@ function draw() {
       break;
     case 0:
       drawTitleScreen();
-
       break;
     case 1:
       drawGame();
       break;
-      case 2: 
+    case 2: 
       drawWinScreen();
       break;
     case 3:
