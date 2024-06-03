@@ -49,7 +49,7 @@ function preload() {
 
 function setup() {
   createCanvas(500, 600);
-  setInterval(spawnSun, 7000);
+  setInterval(spawnSun, 4000);
 
   // Initialize boxes
   for (let i = 0; i < cols; i++) {
