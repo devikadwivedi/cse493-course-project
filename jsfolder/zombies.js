@@ -1,7 +1,7 @@
 function drawZombies() {
   for (let zombie of zombies) {
-    fill(50, 50, 50, zombie.transparency);
-    ellipse(zombie.x, zombie.y, 50, 50);
+    tint(255, zombie.transparency);
+    image(zombie.sprite, zombie.x - 35, zombie.y - 35, 75, 75); // Draw sprite at 50x50 size
     zombie.y += 0.5;
 
     if (zombie.y > height - menuHeight) {
@@ -26,10 +26,10 @@ function spawnZombie() {
   let lane = Math.floor(random(cols));
   lane = constrain(lane, 0, 4);
   let zombieX = lane * boxWidth + boxWidth / 2;
-  zombies.push({ x: zombieX, y: 0, lane: lane, transparency: 255 });
+  let sprite = random(sprites); // Randomly choose a sprite
+  zombies.push({ x: zombieX, y: 0, lane: lane, transparency: 255, sprite: sprite });
 }
 
-// Checks for zombie collisions
 function checkZombieCollisions(plants, zombies, bullets) {
   for (let plant of plants) {
     if (plant.special == "mine") {
@@ -59,6 +59,6 @@ function checkZombieCollisions(plants, zombies, bullets) {
         }
       }
     }
-    // else add component where the plant dissapears on collision
+    // else add component where the plant disappears on collision
   }
 }
