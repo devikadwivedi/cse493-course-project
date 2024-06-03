@@ -1,20 +1,20 @@
-// Draws the title screen
-function drawTitleScreen() {
-  background(50);
-  fill(255);
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  text("Title Screen", width / 2, height / 2);
-}
+// // Draws the title screen
+// function drawTitleScreen() {
+//   background(50);
+//   fill(255);
+//   textSize(32);
+//   textAlign(CENTER, CENTER);
+//   text("Title Screen", width / 2, height / 2);
+// }
 
-// Draws the game over screen
-function drawGameOverScreen() {
-  background(0);
-  fill(255, 0, 0);
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  text("Game Over", width / 2, height / 2);
-}
+// // Draws the game over screen
+// function drawGameOverScreen() {
+//   background(0);
+//   fill(255, 0, 0);
+//   textSize(32);
+//   textAlign(CENTER, CENTER);
+//   text("Game Over", width / 2, height / 2);
+// }
 
 // Draws the menu
 function drawMenu(selectedPlant) {
