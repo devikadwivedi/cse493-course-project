@@ -1,8 +1,6 @@
 function drawGame() {
-
       noStroke();
       background(160, 210, 140);
-
       drawField(boxes);
       drawPlants(plants);
       drawBullets(bullets);
