@@ -68,8 +68,6 @@ function draw() {
   switch (gameState) {
     case 0:
       drawTitleScreen();
-
-
       break;
     case 1:
       drawGame();
