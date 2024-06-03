@@ -1,9 +1,11 @@
-let startTime;
+let startTime = -1;
 let initialHeight = 500; // Initial height of the rectangle
 let rectWidth = 5; // Width of the rectangle
 
 function startTimer() {
-  startTime = millis();
+  if (startTime < 0){
+    startTime = millis();
+  }
 }
 
 function updateTimer() {

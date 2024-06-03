@@ -27,7 +27,7 @@ function collectSun(x, y) {
   for (let i = suns.length - 1; i >= 0; i--) {
     let curr_sun = suns[i];
     let distance = dist(x, y, curr_sun.x, curr_sun.y);
-    if (distance < curr_sun.radius) {
+    if (distance < curr_sun.radius * 5) {
       suns.splice(i, 1);
       sun += 50;
       return true;
