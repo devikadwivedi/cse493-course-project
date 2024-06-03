@@ -11,6 +11,7 @@ function drawGame() {
       drawSuns(suns);
       updateTimer();
       drawMenu(selectedPlant);
+      mouseMoved();
       checkZombieCollisions(plants, zombies, bullets);
 
       // generating the flakes

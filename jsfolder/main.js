@@ -9,6 +9,8 @@ let plantImages = {};
 let grasses = [];
 
 
+
+
 let plantTypes = [
   { key: 's', name: "plant1.png", color: 'rgb(81,179,81)', interval: 1000, cost: 100, special: "none" },
   { key: 'd', name: "plant2.png", color: 'rgb(204,115,130)', interval: 660, cost: 200, special: "none" },
@@ -54,6 +56,7 @@ function setup() {
     }
   }
   setInterval(spawnZombie, zombieInterval);
+  handPoseSetup();
   startTimer();
 }
 
@@ -61,12 +64,16 @@ function draw() {
   switch (gameState) {
     case 0:
       drawTitleScreen();
+      
+      
       break;
     case 1:
       drawGame();
       break;
     case 2:
       drawGameOverScreen();
+    case -1: //debugging case
+      background(100);
       break;
   }
 }
@@ -86,15 +93,13 @@ function keyPressed() {
 
 // Mouse pressed handler
 function mousePressed() {
-  let val = collectSun(mouseX, mouseY);
-  if (val == true) {
-    return;
-  }
+  updateCursor();
+
   if (selectedPlant && sun >= selectedPlant.cost) {
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         let box = boxes[i][j];
-        if (mouseX > box.x && mouseX < box.x + box.w && mouseY > box.y && mouseY < box.y + box.h) {
+        if (cursorX > box.x && cursorX < box.x + box.w && cursorY > box.y && cursorY < box.y + box.h) {
           if (!box.containsPlant) {
             box.containsPlant = true;
             box.plant = selectedPlant;
@@ -118,10 +123,12 @@ function mousePressed() {
 
 // Mouse moved handler
 function mouseMoved() {
+  updateCursor();
+  collectSun(cursorX, cursorY);
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       let box = boxes[i][j];
-      if (mouseX > box.x && mouseX < box.x + box.w && mouseY > box.y && mouseY < box.y + box.h) {
+      if (cursorX > box.x && cursorX < box.x + box.w && cursorY > box.y && cursorY < box.y + box.h) {
         box.isHighlighted = true;
       } else {
         box.isHighlighted = false;
