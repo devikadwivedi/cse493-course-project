@@ -17,7 +17,6 @@ function drawGameOverScreen() {
 }
 
 // Draws the menu
-// Draws the menu
 function drawMenu(selectedPlant) {
   noTint();
   fill(112, 74, 0);
@@ -30,6 +29,16 @@ function drawMenu(selectedPlant) {
   fill(255, 255, 255);
   text(`Sun: ${sun}`, 10, height - menuHeight + 10);
 
+  // Calculate and display the timer value
+  let elapsedTime = millis() - startTime;
+  let remainingTime = totalTime - elapsedTime;
+
+  // Convert remainingTime to minutes and seconds
+  let minutes = floor(remainingTime / 60000);
+  let seconds = floor((remainingTime % 60000) / 1000);
+  let timerValue = nf(minutes, 2) + ':' + nf(seconds, 2, 0); // Format as mm:ss
+
+  text(`Time: ${timerValue}`, 10, height - menuHeight + 30); // Display timer value below the "Sun" value
 
   let offset = 125;
   for (let i = 0; i < plantTypes.length; i++) {
@@ -63,6 +72,7 @@ function drawMenu(selectedPlant) {
     offset += 75;
   }
 }
+
 
 
 

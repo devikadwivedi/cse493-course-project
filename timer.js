@@ -11,10 +11,6 @@ function updateTimer() {
   let elapsedTime = currentTime - startTime;
 
   if (elapsedTime < totalTime) {
-    let currentHeight = calculateCurrentHeight(elapsedTime);
-    fill("blue");
-    noStroke();
-    rect(0, (height - currentHeight) / 2, rectWidth, currentHeight);
     return false;
   } else {
     gameState = 2;
@@ -25,7 +21,7 @@ function updateTimer() {
 function calculateCurrentHeight(elapsedTime) {
   let remainingTime = totalTime - elapsedTime;
   let progress = remainingTime / totalTime;
-  
+
   // Calculate the current height based on the remaining time
   return initialHeight * progress;
 }
