@@ -72,7 +72,6 @@ function draw() {
       break;
     case 0:
       drawTitleScreen();
-
       break;
     case 1:
       drawGame();
