@@ -17,7 +17,9 @@ function drawGameOverScreen() {
 }
 
 // Draws the menu
+// Draws the menu
 function drawMenu(selectedPlant) {
+  noTint();
   fill(112, 74, 0);
   rect(0, height - menuHeight, width, menuHeight);
   fill(17, 150, 0);
@@ -27,11 +29,7 @@ function drawMenu(selectedPlant) {
   textAlign(LEFT, TOP);
   fill(255, 255, 255);
   text(`Sun: ${sun}`, 10, height - menuHeight + 10);
-  text(`Selected:`, 10, height - menuHeight + 35);
-  if (selectedPlant) {
-    fill(selectedPlant.color);
-    ellipse(100, height - menuHeight + 45, 30, 30);
-  }
+
 
   let offset = 125;
   for (let i = 0; i < plantTypes.length; i++) {
@@ -49,32 +47,45 @@ function drawMenu(selectedPlant) {
     strokeWeight(1);
     rect(boxX, boxY, 75, menuHeight);
     noStroke();
-    fill(plant.color);
-    ellipse(boxX + 37.5, boxY + 30, 35, 35);
+
+    let img = plantImages[plant.name];
+    if (img) {
+      image(img, boxX + 13, boxY + 5, 50, 50); // Draw the plant image in the menu
+    } else {
+      fill(plant.color);
+      ellipse(boxX + 37.5, boxY + 30, 35, 35); // Fallback to ellipse if image not found
+    }
+
     fill(0);
-    textSize(14);
+    textSize(15);
     textAlign(CENTER, TOP);
-    text(`${plant.cost}`, boxX + 37.5, boxY + 55);
+    text(`${plant.cost}`, boxX + 37.5, boxY + 60);
     offset += 75;
   }
 }
 
 
 
+
 // Draws the field
 function drawField(boxes) {
+  noTint();
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       let box = boxes[i][j];
       if (box.isHighlighted) {
         fill(234, 247, 163);
+        image(grasses[2], box.x - 7, box.y - 10, 120, 75);
       } else if ((i + j) % 2 === 0) {
         fill(84, 115, 48);
+        image(grasses[1], box.x - 7, box.y - 10, 125, 80);
       } else {
         fill(160, 210, 140);
+        image(grasses[0], box.x - 7, box.y - 10, 125, 80);
       }
       rectMode(CORNER);
-      rect(box.x, box.y, box.w, box.h, 5);
+
+      //rect(box.x, box.y, box.w, box.h, 5);
     }
   }
 }

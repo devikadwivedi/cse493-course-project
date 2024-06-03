@@ -1,8 +1,14 @@
 function drawPlants() {
+  noTint();
   for (let plant of plants) {
-    fill(plant.color);
-    ellipse(plant.x, plant.y, 50, 50);
-
+    noTint();
+    let plantImg = plantImages[plant.name];
+    if (plantImg) {
+      image(plantImg, plant.x - 30, plant.y - 30, 60, 60); // Draw the plant image
+    } else {
+      fill(plant.color);
+      ellipse(plant.x, plant.y, 50, 50); // Fallback to ellipse if image not found
+    }
   }
 }
 
@@ -44,10 +50,10 @@ function genFlakes(x, y) {
   noStroke();
   while (i--) {
     flakes.push({
-      color: color(color('#B7B6B6(0%, 50%, 50%)')),
+      color: color(color('#D33232')),
       pos: createVector(x, y),
       vel: p5.Vector.fromAngle(random(2 * PI)).mult(random(10)),
-      size: random(30)
+      size: random(25)
     });
   }
 }

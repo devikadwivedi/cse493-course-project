@@ -4,17 +4,36 @@ let bullets = [];
 let zombies = [];
 let suns = [];
 let flakes = [];
+let sprites = [];
+let plantImages = {};
+let grasses = [];
+
 
 let plantTypes = [
-  { key: 's', name: "Plant 1", color: 'rgb(81,179,81)', interval: 1000, cost: 100, special: "none" },
-  { key: 'd', name: "Plant 3", color: 'rgb(204,115,130)', interval: 660, cost: 200, special: "none" },
-  { key: 'f', name: "Plant 2", color: 'rgb(137,89,70)', cost: 200, special: "mine" },
-  { key: 'g', name: "Plant 4", color: 'rgb(148,139,207)', interval: 1000, cost: 200, special: "forward-backward" }
+  { key: 's', name: "plant1.png", color: 'rgb(81,179,81)', interval: 1000, cost: 100, special: "none" },
+  { key: 'd', name: "plant2.png", color: 'rgb(204,115,130)', interval: 660, cost: 200, special: "none" },
+  { key: 'f', name: "plant3.png", color: 'rgb(137,89,70)', cost: 200, special: "mine" },
+  { key: 'g', name: "plant4.png", color: 'rgb(148,139,207)', interval: 1000, cost: 200, special: "forward-backward" }
 ];
 let selectedPlant = plantTypes[0];
 
 let zombieInterval = 10000;
 let selectedIndex = 0; // Track the current selected plant index
+
+
+function preload() {
+  // Load the sprites
+  for (let i = 1; i <= 4; i++) {
+    sprites.push(loadImage(`sprite${i}.png`));
+  }
+  for (let i = 1; i <= 3; i++) {
+    grasses.push(loadImage(`grass${i}.png`));
+  }
+  // Load the plant images
+  for (let plantType of plantTypes) {
+    plantImages[plantType.name] = loadImage(plantType.name);
+  }
+}
 
 function setup() {
   createCanvas(500, 600);
@@ -58,6 +77,8 @@ function keyPressed() {
     selectedIndex = (selectedIndex - 1 + plantTypes.length) % plantTypes.length; // Move left
   } else if (key === 's') {
     selectedIndex = (selectedIndex + 1) % plantTypes.length; // Move right
+  } else if (key == 'z') {
+    mousePressed();
   }
   selectedPlant = plantTypes[selectedIndex];
   console.log('Selected Plant:', selectedPlant);
