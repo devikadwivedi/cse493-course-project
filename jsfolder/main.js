@@ -7,6 +7,7 @@ let flakes = [];
 let sprites = [];
 let plantImages = {};
 let grasses = [];
+let woods = [];
 
 
 
@@ -28,8 +29,11 @@ function preload() {
   for (let i = 1; i <= 4; i++) {
     sprites.push(loadImage(`sprite${i}.png`));
   }
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 4; i++) {
     grasses.push(loadImage(`grass${i}.png`));
+  }
+  for (let i = 1; i <= 2; i++) {
+    woods.push(loadImage(`wood${i}.png`));
   }
   // Load the plant images
   for (let plantType of plantTypes) {
@@ -56,7 +60,7 @@ function setup() {
     }
   }
   setInterval(spawnZombie, zombieInterval);
-  handPoseSetup();
+  //handPoseSetup();
   startTimer();
 }
 
@@ -64,8 +68,8 @@ function draw() {
   switch (gameState) {
     case 0:
       drawTitleScreen();
-      
-      
+
+
       break;
     case 1:
       drawGame();

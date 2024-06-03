@@ -4,7 +4,7 @@ function drawPlants() {
     noTint();
     let plantImg = plantImages[plant.name];
     if (plantImg) {
-      image(plantImg, plant.x - 30, plant.y - 30, 60, 60); // Draw the plant image
+      image(plantImg, plant.x - 20, plant.y - 30, 40, 55); // Draw the plant image
     } else {
       fill(plant.color);
       ellipse(plant.x, plant.y, 50, 50); // Fallback to ellipse if image not found
