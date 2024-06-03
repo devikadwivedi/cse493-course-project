@@ -1,5 +1,3 @@
-// Basic demo for accelerometer readings from Adafruit LIS3DH
-
 #include <Wire.h>
 #include <SPI.h>
 #include <Keyboard.h>
@@ -75,10 +73,10 @@ void loop() {
     int state = rcvdSerialData.toInt();
     if (state == 0) {
       //info page
-      setColor(200, 200, 200);
+      setColor(0, 0, 200);
     } else if (state == 1) {
       //game page
-      setColor(200, 200, 0);
+      setColor(0, 0, 0);
     } else if (state == 2) {
       //win page
       setColor(0, 200, 0);
@@ -96,17 +94,6 @@ void loop() {
   sensors_event_t event;
   lis.getEvent(&event);
 
-  if (event.acceleration.x > 3.0) { // left movement
-    Keyboard.press('a');
-    delay(100);
-    Keyboard.releaseAll();
-    // Serial.println("right");
-  } else if (event.acceleration.x < -3.0) { // right movement
-    Keyboard.press('s');
-    delay(100);
-    Keyboard.releaseAll();
-    // Serial.println("left");
-  }
 
   if (event.acceleration.y < -4.0) { // forward movement
     Keyboard.press('z');
@@ -117,7 +104,17 @@ void loop() {
     digitalWrite(VIBROMOTOR_OUTPUT_PIN, HIGH);
     _vibroMotorStartTimeStamp = millis();
     // Serial.println("forward");
-  } 
+  } else if (event.acceleration.x > 3.0) { // left movement
+    Keyboard.press('a');
+    delay(100);
+    Keyboard.releaseAll();
+    // Serial.println("right");
+  } else if (event.acceleration.x < -3.0) { // right movement
+    Keyboard.press('s');
+    delay(100);
+    Keyboard.releaseAll();
+    // Serial.println("left");
+  }
 
   // Check for vibromotor output
   if(_vibroMotorStartTimeStamp != -1){

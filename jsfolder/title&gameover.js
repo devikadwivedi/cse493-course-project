@@ -22,7 +22,7 @@ function drawTitleScreen() {
 }
 
 function drawWinScreen() {
-
+  serialWriteState(2);
 }
 
 function drawLoseScreen() {
@@ -39,5 +39,7 @@ function drawLoseScreen() {
   textSize(24);
   fill(200, 200, 200);
   text('Press Any Key to Restart', width / 2, height / 2 + 20);
+
+  serialWriteState(3);
 }
 
