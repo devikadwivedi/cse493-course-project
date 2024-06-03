@@ -20,6 +20,7 @@ let zombieInterval = 5000; // interval in milliseconds
 function setup() {
   createCanvas(500, 600);
   noseTrackingSetup(); //Set up nose tracking
+  serialSetup(); //Set up serial communication
   setInterval(spawnSun, 10000); // Spawn a sun every second
   
   // Initialize boxes
@@ -259,6 +260,7 @@ function spawnZombie() {
   lane = constrain(lane, 0, 4);
   let zombieX = lane * boxWidth + boxWidth / 2;
   zombies.push({ x: zombieX, y: 0, lane: lane, transparency: 255 });
+  serialWriteState(lane);
 }
 
 function keyPressed() {
