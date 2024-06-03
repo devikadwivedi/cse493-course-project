@@ -5,7 +5,7 @@ function drawZombies() {
     zombie.y += 0.5;
 
     if (zombie.y > height - menuHeight) {
-      gameState = 2; // GAME OVER!
+      gameState = 3; // GAME OVER!
     }
   }
 
