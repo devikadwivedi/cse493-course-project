@@ -13,8 +13,8 @@ let woods = [];
 let plantTypes = [
   { key: 's', name: "plant1.png", color: 'rgb(81,179,81)', interval: 1000, cost: 100, special: "none" },
   { key: 'd', name: "plant2.png", color: 'rgb(204,115,130)', interval: 660, cost: 200, special: "none" },
-  { key: 'f', name: "plant3.png", color: 'rgb(137,89,70)', cost: 200, special: "mine" },
-  { key: 'g', name: "plant4.png", color: 'rgb(148,139,207)', interval: 1000, cost: 200, special: "forward-backward" }
+  { key: 'f', name: "plant3.png", color: 'rgb(137,89,70)', cost: 300, special: "mine" },
+  { key: 'g', name: "plant4.png", color: 'rgb(148,139,207)', interval: 1000, cost: 250, special: "forward-backward" }
 ];
 let selectedPlant = plantTypes[0];
 
@@ -49,7 +49,7 @@ function preload() {
 
 function setup() {
   createCanvas(500, 600);
-  setInterval(spawnSun, 10000);
+  setInterval(spawnSun, 7000);
 
   // Initialize boxes
   for (let i = 0; i < cols; i++) {

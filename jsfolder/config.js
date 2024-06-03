@@ -9,7 +9,7 @@ let gameState = 0; // -1 is plant info page, 0 is menu, 1 is in game, 2 is plant
 
 //Transplanted from sketch.js
 let health = 100;
-let sun = 2000; // initial amount of sun
+let sun = 100; // initial amount of sun
 let cols = 5;
 let rows = 8;
 let boxWidth = 100;
