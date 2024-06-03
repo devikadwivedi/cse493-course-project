@@ -2,7 +2,7 @@
 let invertWrist = true;
 
 //true for mouse, false for wrist tracking
-let useMouse = true;
+let useMouse = false;
 
 let totalTime = 2* 60 * 1000;
 let gameState = 0; // -1 is plant info page, 0 is menu, 1 is in game, 2 is plant win, 3 is zombie win

@@ -15,6 +15,7 @@ function drawTitleScreen() {
   if (mouseIsPressed){
     if (mouseX > 115 && mouseX < 215 && mouseY > 100 && mouseY < 150) {
       gameState = 1;
+      startTimer();
     } else if (mouseX > 275 && mouseX < 375 && mouseY > 100 && mouseY < 150) {
       gameState = 4;
     }
