@@ -7,6 +7,7 @@ let flakes = [];
 let sprites = [];
 let plantImages = {};
 let grasses = [];
+let titleScreenImage;
 let woods = [];
 
 
@@ -25,6 +26,7 @@ let selectedIndex = 0; // Track the current selected plant index
 
 
 function preload() {
+  titleScreenImage = loadImage(game_start.png);
   // Load the sprites
   for (let i = 1; i <= 4; i++) {
     sprites.push(loadImage(`sprite${i}.png`));
@@ -60,24 +62,29 @@ function setup() {
     }
   }
   setInterval(spawnZombie, zombieInterval);
-  //handPoseSetup();
-  startTimer();
+  handPoseSetup();
 }
 
 function draw() {
   switch (gameState) {
+    case -1:
+      //plant info page here
+      break;
     case 0:
       drawTitleScreen();
-
 
       break;
     case 1:
       drawGame();
       break;
-    case 2:
-      drawGameOverScreen();
-    case -1: //debugging case
-      background(100);
+      case 2: 
+      drawWinScreen();
+      break;
+    case 3:
+      drawLoseScreen();
+      break;
+    default: //debugging case
+      background(255,0,0);
       break;
   }
 }
