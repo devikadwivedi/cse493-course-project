@@ -28,7 +28,6 @@ function drawTitleScreen() {
   text('Press Any Key to Start', width / 2, height / 2 + 80);
 
   drawFlowers(); //thanks chatgpt
-  serialWriteState(0);
 }
 
 function drawFlowers() {
@@ -71,7 +70,6 @@ function drawFlower(x, y, col) {
 //////
 
 function drawWinScreen() {
-  serialWriteState(2);
 }
 
 
@@ -94,7 +92,6 @@ function drawLoseScreen() {
   textSize(24);
   fill(200, 200, 200);
   text('Press Any Key to Restart', width / 2, height / 2 + 20);
-  serialWriteState(3);
 }
 
 

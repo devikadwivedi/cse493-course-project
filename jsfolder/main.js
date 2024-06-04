@@ -68,6 +68,7 @@ function setup() {
   setInterval(spawnZombie, zombieInterval);
   handPoseSetup();
   serialSetup(); //Set up serial communication
+  serialWriteState(0);
 }
 
 function draw() {
@@ -133,6 +134,9 @@ function mousePressed() {
         }
       }
     }
+  } else if (gameState == 3) {
+    gameState = 0;
+    serialWriteState(0);
   }
 }
 
