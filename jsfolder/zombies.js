@@ -6,6 +6,7 @@ function drawZombies() {
 
     if (zombie.y > height - menuHeight) {
       gameState = 3; // GAME OVER!
+      serialWriteState(3);
     }
   }
 

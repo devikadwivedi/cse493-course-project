@@ -136,6 +136,19 @@ function mousePressed() {
     }
   } else if (gameState == 3) {
     gameState = 0;
+
+    // Reset the game
+    plants = [];
+    bullets = [];
+    zombies = [];
+    suns = [];
+    flakes = [];
+    sun = 100;
+    health = 100;
+    selectedIndex = 0;
+    selectedPlant = plantTypes[0];
+    ResetTimer();
+
     serialWriteState(0);
   }
 }
@@ -143,14 +156,17 @@ function mousePressed() {
 // Mouse moved handler
 function mouseMoved() {
   updateCursor();
-  collectSun(cursorX, cursorY);
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      let box = boxes[i][j];
-      if (cursorX > box.x && cursorX < box.x + box.w && cursorY > box.y && cursorY < box.y + box.h) {
-        box.isHighlighted = true;
-      } else {
-        box.isHighlighted = false;
+
+  if (gameState == 1) {
+    collectSun(cursorX, cursorY);
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        let box = boxes[i][j];
+        if (cursorX > box.x && cursorX < box.x + box.w && cursorY > box.y && cursorY < box.y + box.h) {
+          box.isHighlighted = true;
+        } else {
+          box.isHighlighted = false;
+        }
       }
     }
   }

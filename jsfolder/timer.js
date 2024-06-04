@@ -27,3 +27,7 @@ function calculateCurrentHeight(elapsedTime) {
   // Calculate the current height based on the remaining time
   return initialHeight * progress;
 }
+
+function ResetTimer() {
+  startTime = -1;
+}
